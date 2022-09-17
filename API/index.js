@@ -20,9 +20,9 @@ app.get("/", function (req, res) {
 });
 
 
-fs.readdirSync("./API").forEach((file) => {
+fs.readdirSync("./api").forEach((file) => {
     app.use("/", router);
-    require(`./API/${file}`)(router, client);
+    require(`./api/${file}`)(router);
     console.log(`${file} loaded!`);
   });
 
