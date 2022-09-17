@@ -1,0 +1,117 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #0b0a15;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: grid;
+  grid: 150px / auto auto auto;
+  grid-row-gap: 50px;
+  grid-column-gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(63 63 70/.05)!important;
+  padding: 20px;
+  color: white;
+  border: 3px solid #081e24;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+.row h1 {
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: grid;
+  grid: 150px / auto auto auto;
+  grid-row-gap: 50px;
+  grid-column-gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.main-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #133c8d;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.bstart {
+  background-color: #00da2f;
+  color: white;
+  border-radius: 8px;
+}
+.bstop {
+  background-color: #da0000;
+  color: white;
+  border-radius: 8px;
+}
+.brestart {
+  background-color: #daa000;
+  color: white;
+  border-radius: 8px;
+}
+
+.main-item-body-item {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+}

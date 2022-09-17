@@ -62,7 +62,7 @@ function App() {
       if(data.status === 200){
         toast.success("Successfully registered", toastOptions);
         localStorage.setItem("LOCALHOST_KEY", JSON.stringify(data.data.localuser));
-        navigate(`/dashboard/${username}`);
+        navigate(`/dashboard/`);
       }
 
     setUsername('');
