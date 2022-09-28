@@ -11,7 +11,8 @@ module.exports.fetchGuild = async function(key){
             name: key,
             password: "false",
             email: "false",
-            projects: [],
+            usertoken: "false",
+            docker: [],
             registeredAt: Date.now()
         })
         await client.save().catch(err => console.log(err));
