@@ -1,7 +1,6 @@
 UserSchema = require("./Schema/User.js"),
 
 module.exports.fetchGuild = async function(key){
-
     let client = await UserSchema.findOne({ name: key });
 
     if(client){
