@@ -6,14 +6,15 @@ const axios = require("axios");
 module.exports = (router) => {
 router.post("/docker-1", async (req, res) => {
     let { id, key, port } = req.body;
-    if (!key || key != "elysiumnodesglichi") return res.sendStatus(403);
+    console.log(clc.greenBright(`Docker-1: ${id} ${key} ${port}`));
+    if (!key === "elysiumnodesglichi") return res.sendStatus(403);
     if (!id) return res.send("No id");
     if (!port) return res.send("No port");
 
     console.log(`Port: ${port} || User ID: ${id} || Key: ${key}`);
 
 
-    exec(`cd /var/www/DOCKERBOT1/ && docker build -t db-${id}-1 .`, async (error, stdout) => {
+    exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker build -t db-${id}-1 .`, async (error, stdout) => {
         let response = error || stdout;
         if (error) {
           console.log(error);
@@ -23,7 +24,7 @@ router.post("/docker-1", async (req, res) => {
             console.log("///////////////////////////////////////////////////////////////////////")
             // build container
     
-            exec(`cd /var/www/DOCKERBOT1/ && docker run -e 'BOTTOKEN=${bottoken}' -d db-${id}-1`, async (error, stdout) => {
+            exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker run -e 'port=${port}' -d db-${id}-1`, async (error, stdout) => {
                 let response1 = error || stdout;
                 if (error) {
                   console.log(error);
