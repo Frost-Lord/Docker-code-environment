@@ -6,7 +6,6 @@ services:
     volumes:
       - .:/app
     environment:
-      - port=${port}
+      - PORTOPEN=${portopen}
     ports:
-      - "${port}:${port}"
-      
+      - "${portopen}:${portopen}"

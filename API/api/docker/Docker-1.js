@@ -23,8 +23,9 @@ router.post("/docker-1", async (req, res) => {
             console.log(response)
             console.log("///////////////////////////////////////////////////////////////////////")
             // build container
+            let portopen = port;
     
-            exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker run -e 'port=${port}' -d db-${id}-1`, async (error, stdout) => {
+            exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker run -e 'PORTOPEN=${portopen}' -d db-${id}-1`, async (error, stdout) => {
                 let response1 = error || stdout;
                 if (error) {
                   console.log(error);
