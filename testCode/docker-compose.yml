@@ -9,3 +9,4 @@ services:
       - port=${port}
     ports:
       - "${port}:${port}"
+      
