@@ -44,11 +44,6 @@ router.post("/docker-1", async (req, res) => {
                           console.log("///////////////////////////////////////////////////////////////////////")
                             console.log(response2)
                             console.log("///////////////////////////////////////////////////////////////////////")
-                            axios.post("http://64.44.152.39:7779/api/v1/dockers", {
-                            id: id,
-                            command: response2,
-                            key: "elysiumnodesglichi",
-                          });
                         }
                       });
     

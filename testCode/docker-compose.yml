@@ -8,4 +8,4 @@ services:
     environment:
       - PORTOPEN=${portopen}
     ports:
-      - "${portopen}:${portopen}"
+      - "${portopen}:2022"

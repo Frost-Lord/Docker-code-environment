@@ -7,6 +7,7 @@ import Home from './pages/root/index';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import Dashboard from './pages/dashboard/manage';
+import Container from './pages/dashboard/container';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/:containerid/container" element={<Container />} />
     </Routes>
   </Router>,
 
