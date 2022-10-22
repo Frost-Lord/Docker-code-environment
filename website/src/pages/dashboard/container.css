@@ -25,7 +25,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 25%;
+  width: 15%;
   height: 100%;
   overflow: auto;
   border: 1px solid rgb(255, 255, 255);
@@ -37,7 +37,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 33%;
+  width: 28%;
   height: 100%;
   overflow: auto;
   border: 1px solid rgb(255, 255, 255);
@@ -45,8 +45,8 @@
 
 .console-inner {
   padding: 0.2rem;
-  padding-left: 0.5cm;
-  padding-right: 0.5cm;
+  padding-left: 0.3cm;
+  padding-right: 0.3cm;
 }
 
 .console-content {
