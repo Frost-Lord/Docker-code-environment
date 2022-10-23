@@ -1,6 +1,6 @@
 const clc = require("cli-color");
 const { exec } = require("child_process");
-const axios = require("axios");
+const db = require("../../Database/Schema/User");
 
 
 module.exports = (router) => {
@@ -14,7 +14,7 @@ router.post("/docker-1", async (req, res) => {
     console.log(`Port: ${port} || User ID: ${id} || Key: ${key}`);
 
 
-    exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker build -t db-${id}-1 .`, async (error, stdout) => {
+    exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker build -t bot1 .`, async (error, stdout) => {
         let response = error || stdout;
         if (error) {
           console.log(error);
@@ -25,7 +25,7 @@ router.post("/docker-1", async (req, res) => {
             // build container
             let portopen = port;
     
-            exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker run -e PORTOPEN=${portopen} -d db-${id}-1`, async (error, stdout) => {
+            exec(`cd C:/Users/ewen2/Documents/GitHub/Docker-Sharded-code/testCode/ && docker run -e PORTOPEN=${portopen} -d bot1`, async (error, stdout) => {
                 let response1 = error || stdout;
                 if (error) {
                   console.log(error);
@@ -44,6 +44,13 @@ router.post("/docker-1", async (req, res) => {
                           console.log("///////////////////////////////////////////////////////////////////////")
                             console.log(response2)
                             console.log("///////////////////////////////////////////////////////////////////////")
+
+                            let user = await db.findOne({ usertoken: id });
+                            if (!user) return res.send("User not found");
+
+                            user.docker.push({ id: response2, port: portopen });
+                            await user.save();
+
                             res.sendStatus(200);
                         }
                       });

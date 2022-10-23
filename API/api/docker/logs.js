@@ -1,6 +1,5 @@
 const clc = require("cli-color");
 const { exec } = require("child_process");
-const axios = require("axios");
 
 
 module.exports = (router) => {
