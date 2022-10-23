@@ -9,13 +9,15 @@ function App() {
 
   useEffect(() => {
     if (!localStorage.getItem("LOCALHOST_KEY")) {
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 
   useEffect(() => {
     setuser(JSON.parse(localStorage.getItem("LOCALHOST_KEY")));
   }, []);
+
+
 
   return (
     <div className="App">
@@ -62,12 +64,14 @@ function App() {
         <br></br><br></br><br></br><br></br><br></br><br></br>
 
         <div className="main">
-          <div className="main-item">
-            <div className="main-item-header">Container 1</div>
+
+        {user.docker?.map((item) => (
+          <><div className="main-item">
+            <div className="main-item-header">Container {item?.id}</div>
             <div className="main-item-body">
-              <div className="main-item-body-item">Type: Website</div>
-              <div className="main-item-body-item">Status: Running</div>
-              <div className="main-item-body-item">Manage:ㅤ <a href="http://localhost:3000">Click here</a>
+              <div className="main-item-body-item">Type: {item?.type}</div>
+              <div className="main-item-body-item">Status: {item?.status}</div>
+              <div className="main-item-body-item">Manage: ㅤ <a href={"/dashboard/" + item?.id + "/container"}>Click here</a>
               </div>
               <button type="button" className="bstart">
                 Start
@@ -82,9 +86,9 @@ function App() {
                 Delete
               </button>
             </div>
-          </div>
-
-
+          </div></>
+        ))
+        }
         </div>
       </header>
     </div>

@@ -48,7 +48,7 @@ router.post("/docker-1", async (req, res) => {
                             let user = await db.findOne({ usertoken: id });
                             if (!user) return res.send("User not found");
 
-                            user.docker.push({ id: response2, port: portopen });
+                            user.docker.push({ id: response2, port: portopen, type: "bot", status: "running" });
                             await user.save();
 
                             res.sendStatus(200);
