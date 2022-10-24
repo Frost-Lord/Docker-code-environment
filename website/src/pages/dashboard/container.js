@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { dockerlogs } from "../../routes/routes";
-import { editpage, savepage } from "./container-script";
+import { savepage } from "./container-script";
 
 function App() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     if (!localStorage.getItem("LOCALHOST_KEY")) {
-      //navigate("/");
+      navigate("/login");
     }
   }, []);
 
@@ -123,7 +123,7 @@ codeEditor?.addEventListener('input', () => {
           <h2 className="files-title">Logs</h2>
           <div className="console-inner">
           <p>
-              <div className="counter" id="lineCounter2" wrap="off" readonly>
+              <div className="counter" id="lineCounter2" wrap="off">
                 1.
               </div>
               <div className="codelog" id="codelog" wrap="off">{logs}</div>
@@ -138,7 +138,7 @@ codeEditor?.addEventListener('input', () => {
           </button></h2>
           <div className="file-inner">
             <p>
-              <textarea className="counter" id="lineCounter" wrap="off" readonly>
+              <textarea className="counter" id="lineCounter" wrap="off">
                 1.
               </textarea>
               <textarea className="codeEditor" id="codeEditor" wrap="off"></textarea>

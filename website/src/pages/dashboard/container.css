@@ -91,7 +91,7 @@
   font-size: 1.0rem;
 }
 .codeEditor {
-  padding-left: calc(3.5rem + 5px);
+  padding-left: calc(0.5rem + 5px);
   width:85%;
   height: 45rem;
   background-color:#1c2333;
@@ -99,6 +99,7 @@
   border-top: #1c2333;
   border-bottom: #1c2333;
   border-right: #1c2333;
+  border-left: #1c2333;
   font-size: 1.0rem;
 }
 
@@ -112,6 +113,7 @@
   border-bottom: #1c2333;
   border-right: #1c2333;
   font-size: 1.0rem;
+  text-align: left;
 }
 
 ::-webkit-scrollbar-track
