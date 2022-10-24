@@ -48,6 +48,15 @@ function App() {
           </div>
         </div>
 
+        <div className="file">
+          <h2 className="files-title">Files</h2>
+          <div className="file-inner">
+            <div className="file-content">
+
+            </div>
+          </div>
+        </div>
+
 
         <div className="files">
           <h2 className="files-title">Files</h2>

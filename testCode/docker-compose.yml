@@ -7,5 +7,6 @@ services:
       - .:/app
     environment:
       - PORTOPEN=${portopen}
+      - UUID=${UUID}
     ports:
       - "${portopen}:2022"

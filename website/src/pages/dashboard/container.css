@@ -19,6 +19,18 @@
   color: white;
 }
 
+.file {
+  background-color: #1c2333;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 15.5%;
+  width: 56%;
+  height: 100%;
+  overflow: auto;
+  border-radius: 25px 25px 25px 25px;
+}
+
 .files {
   background-color: #1c2333;
   color: white;
@@ -28,7 +40,7 @@
   width: 15%;
   height: 100%;
   overflow: auto;
-  border: 1px solid rgb(255, 255, 255);
+  border-radius: 25px 25px 25px 25px;
 }
 
 .console {
@@ -40,7 +52,7 @@
   width: 28%;
   height: 100%;
   overflow: auto;
-  border: 1px solid rgb(255, 255, 255);
+  border-radius: 25px 25px 25px 25px;
 }
 
 .console-inner {
