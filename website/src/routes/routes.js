@@ -12,3 +12,4 @@ export const allfiles = `${host}/files/allfiles`;
 export const CDir = `${host}/files/cdir`;
 export const CFile = `${host}/files/cfile`;
 export const getfile = `${host}/files/getfile`;
+export const savefile = `${host}/files/savefile`;

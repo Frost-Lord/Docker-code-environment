@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { dockerlogs, allfiles } from "../../routes/routes";
-import {openCard} from "./container-script";
-import "react-toastify/dist/ReactToastify.css";
+import {openCard,saveCard,loadlog,loadfiledata} from "./container-script";
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   const navigate = useNavigate();
@@ -16,85 +17,11 @@ function App() {
     if (!localStorage.getItem("LOCALHOST_KEY")) {
       navigate("/login");
     }
-  }, []);
+    loadlog()
+    loadfiledata()
 
-  useEffect(() => {
-  let codeEditor = document.getElementById('codeEditor');
-  let lineCounter = document.getElementById('lineCounter');
-
-
-codeEditor.addEventListener('scroll', () => {
-  lineCounter.scrollTop = codeEditor.scrollTop;
-  lineCounter.scrollLeft = codeEditor.scrollLeft;
-});
-codeEditor?.addEventListener('keydown', (e) => {
-let { keyCode } = e;
-let { value, selectionStart, selectionEnd } = codeEditor;
-if (keyCode === 9) {  // TAB = 9
-  e.preventDefault();
-  codeEditor.value = value.slice(0, selectionStart) + '\t' + value.slice(selectionEnd);
-  codeEditor.setSelectionRange(selectionStart+2, selectionStart+2)
-}
-});
-var lineCountCache = 0;
-function line_counter() {
-    var lineCount = codeEditor.value.split('\n').length;
-    // eslint-disable-next-line no-array-constructor
-    var outarr = new Array();
-    // eslint-disable-next-line eqeqeq
-    if (lineCountCache != lineCount) {
-       for (var x = 0; x < lineCount; x++) {
-          outarr[x] = (x + 1) + '.';
-       }
-       lineCounter.value = outarr.join('\n');
-    }
-    lineCountCache = lineCount;
-}
-codeEditor?.addEventListener('input', () => {
-  line_counter();
-});
-  }, []);
-
-  useEffect(() => {
-    let codeEditor = document.getElementById('codelog');
-    let lineCounter = document.getElementById('lineCounter2');
-  
-  
-  codeEditor.addEventListener('scroll', () => {
-    lineCounter.scrollTop = codeEditor.scrollTop;
-    lineCounter.scrollLeft = codeEditor.scrollLeft;
-  });
-  codeEditor?.addEventListener('keydown', (e) => {
-  let { keyCode } = e;
-  let { value, selectionStart, selectionEnd } = codeEditor;
-  if (keyCode === 9) {  // TAB = 9
-    e.preventDefault();
-    codeEditor.value = value.slice(0, selectionStart) + '\t' + value.slice(selectionEnd);
-    codeEditor.setSelectionRange(selectionStart+2, selectionStart+2)
-  }
-  });
-  var lineCountCache = 0;
-  function line_counter() {
-      var lineCount = codeEditor.value.split('\n').length;
-      // eslint-disable-next-line no-array-constructor
-      var outarr = new Array();
-      // eslint-disable-next-line eqeqeq
-      if (lineCountCache != lineCount) {
-         for (var x = 0; x < lineCount; x++) {
-            outarr[x] = (x + 1) + '.';
-         }
-         lineCounter.value = outarr.join('\n');
-      }
-      lineCountCache = lineCount;
-  }
-  codeEditor?.addEventListener('input', () => {
-    line_counter();
-  });
-    }, []);
-
-  useEffect(() => {
     setuser(JSON.parse(localStorage.getItem("LOCALHOST_KEY")));
-  }, []);
+}, []);
 
   useEffect(() => {
     let containerid = window.location.href.split("/")[4];
@@ -106,7 +33,6 @@ codeEditor?.addEventListener('input', () => {
         })
         .then((res) => {
           setlogs(res.data);
-
           let codeEditor = document.getElementById('codelog');
           codeEditor.value = res.data;
         })
@@ -127,7 +53,6 @@ codeEditor?.addEventListener('input', () => {
         })
         .then((res) => {
           setfiles(res.data);
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -137,6 +62,7 @@ codeEditor?.addEventListener('input', () => {
   }, []);
 
   return (
+    <>
     <div className="App">
       <header className="App-header">
         <div className="console">
@@ -153,7 +79,7 @@ codeEditor?.addEventListener('input', () => {
         </div>
 
         <div className="file">
-          <h2 className="files-title">File name <button className="save">
+          <h2 className="files-title">File name <button className="save" onClick={saveCard}>
             Save
           </button></h2>
           <div className="file-inner">
@@ -186,6 +112,8 @@ codeEditor?.addEventListener('input', () => {
         </div>
       </header>
     </div>
+    <ToastContainer />
+    </>
   );
 }
 
