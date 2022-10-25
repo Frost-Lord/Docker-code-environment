@@ -8,3 +8,7 @@ export const registerRoute = `${host}/auth/register`;
 export const logoutRoute = `${host}/auth/logout`;
 export const dockerlogs = `${host}/docker/logs`;
 /////////////////////////////////Create//////////////////////////////////////////////////////////////
+export const allfiles = `${host}/files/allfiles`;
+export const CDir = `${host}/files/cdir`;
+export const CFile = `${host}/files/cfile`;
+export const getfile = `${host}/files/getfile`;

@@ -1,7 +1,7 @@
 const clc = require("cli-color");
 const { exec } = require("child_process");
 const db = require("../../Database/Schema/User");
-
+const fs = require("fs");
 
 module.exports = (router) => {
 router.post("/docker-1", async (req, res) => {
@@ -48,8 +48,17 @@ router.post("/docker-1", async (req, res) => {
                             let user = await db.findOne({ usertoken: id });
                             if (!user) return res.send("User not found");
 
+                          if (response2.includes("\n")) {
+                              response2 = response2.replace("\n", "");
+                          }
+
                             user.docker.push({ id: response2, port: portopen, type: "bot", status: "running" });
                             await user.save();
+
+
+                            if (!fs.existsSync(`C:/Users/ewen2/Desktop/test/${response2}`)){
+                              fs.mkdirSync(`C:/Users/ewen2/Desktop/test/${response2}`);
+                            }
 
                             res.sendStatus(200);
                         }

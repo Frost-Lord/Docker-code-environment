@@ -59,6 +59,12 @@ mongoose.connection.on("disconnected", () => {
     console.log(`${file} loaded!`);
   });
 
+  fs.readdirSync("./api/files").forEach((file) => {
+    app.use("/files", router);
+    require(`./api/files/${file}`)(router);
+    console.log(`${file} loaded!`);
+  });
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Listners
 ///////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,6 @@ const { exec } = require("child_process");
 module.exports = (router) => {
 router.post("/logs", async (req, res) => {
     let { id, key } = req.body;
-    console.log(clc.greenBright(`Logs: ${id}`));
     if (!key === "elysiumnodesglichi") return res.sendStatus(403);
     if (!id) return res.send("No id");
 

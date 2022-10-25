@@ -2,13 +2,15 @@ import "./container.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { dockerlogs } from "../../routes/routes";
-import { savepage } from "./container-script";
+import { dockerlogs, allfiles } from "../../routes/routes";
+import {openCard} from "./container-script";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const navigate = useNavigate();
   const [user, setuser] = useState([]);
   const [logs, setlogs] = useState([]);
+  const [files, setfiles] = useState([]);
 
   useEffect(() => {
     if (!localStorage.getItem("LOCALHOST_KEY")) {
@@ -104,10 +106,28 @@ codeEditor?.addEventListener('input', () => {
         })
         .then((res) => {
           setlogs(res.data);
-          console.log(res.data);
 
           let codeEditor = document.getElementById('codelog');
           codeEditor.value = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    let containerid = window.location.href.split("/")[4];
+    const interval = setInterval(() => {
+      axios
+        .post(allfiles, {
+          container: containerid,
+          key: "elysiumnodesglichi",
+        })
+        .then((res) => {
+          setfiles(res.data);
+          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -133,7 +153,7 @@ codeEditor?.addEventListener('input', () => {
         </div>
 
         <div className="file">
-          <h2 className="files-title">File name <button className="save" onClick={savepage}>
+          <h2 className="files-title">File name <button className="save">
             Save
           </button></h2>
           <div className="file-inner">
@@ -150,6 +170,18 @@ codeEditor?.addEventListener('input', () => {
           <h2 className="files-title">Files</h2>
           <div className="files-inner">
             <div className="files-content"></div>
+            {files.map((file) => (
+              <div className="file-item">
+                <div className="file-name">{file}<div className="file-actions">
+                  <button className="file-action" id={file} onClick={openCard}>
+                    Open
+                  </button>
+                  <button className="file-action" id={file}>
+                    Delete
+                  </button>
+                </div></div>
+              </div>
+            ))}
           </div>
         </div>
       </header>
