@@ -112,17 +112,13 @@ function App() {
             <div className="files-inner">
               <div className="files-content"></div>
               {files.map((file) => (
-                <div class="container">
+                <div class="containerfiles" id={file} onClick={openCard}>
                   <div class="image">
                     <img src={getimg(file)} />
                   </div>
                   <div class="text">
                     <h1>{file}</h1>
                   </div>
-                  <button class="btnfile" id={file} onClick={openCard}>
-                    Open
-                  </button>
-                  <br></br>
                   <button class="btnfile" id={file} onClick={delCard}>
                     Delete
                   </button>

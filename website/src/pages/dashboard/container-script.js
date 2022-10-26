@@ -6,15 +6,27 @@ let fileopen;
 
 const toastOptions = {
   position: "top-right",
-  autoClose: 8000,
+  autoClose: 1000,
   theme: "dark",
 };
 
 
 function getimg(file) {
- if (file.includes(".js")) {
+
+  if (file.includes(".json")) {
+    return "https://cdn-icons-png.flaticon.com/512/136/136525.png";
+  } else if (file.includes(".js")) {
   return "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png";
+ } else if (file.includes(".html")) {
+  return "https://www.freepnglogos.com/uploads/html5-logo-png/html5-logo-html-logo-0.png";
+ } else if (file.includes(".css")) {
+  return "https://www.freepnglogos.com/uploads/html5-logo-png/html5-logo-css-logo-png-transparent-svg-vector-bie-supply-9.png";
+ } else if (file.includes(".py")) {
+  return "https://i.postimg.cc/zfqjxY13/python.png";
+ } else if (!file.includes(".")) {
+  return "https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/folder-icon.png"
  }
+
 }
 
 const saveCard = async(event) => {
@@ -51,14 +63,27 @@ const openCard = async(event) => {
 
   fileopen = event.currentTarget.id;
 
-
   await axios.post(getfile, {
     container: containerid,
     key: "elysiumnodesglichi",
     name: event.currentTarget.id,
   }).then((res) => {
     document.getElementById("codeEditor").value = res.data;
-    toast.warn("Loading file", toastOptions); 
+    toast.success("Loaded File", toastOptions); 
+
+
+    var number_of_elements = document.getElementsByClassName('containerfiles').length;
+    var i =0;
+while (i<number_of_elements) {
+  document.getElementsByClassName('containerfiles')[i].style.backgroundColor= '#1c2333';
+  //selecting each class and changing it's backgroundcolor
+  i++;
+} 
+
+
+    document.getElementById(fileopen).style.backgroundColor="#0079f2";
+
+
   }).catch((err) => {
     console.log(err);
   });
