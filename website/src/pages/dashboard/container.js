@@ -97,7 +97,14 @@ function App() {
           <div className="files-inner">
             <div className="files-content"></div>
             {files.map((file) => (
-
+    <div class="container">
+    <div class="image">
+      <img src={getimg(file)} />
+     </div>
+    <div class="text">
+      <h1>{file}</h1>
+    </div>
+  </div>
             ))}
           </div>
         </div>
