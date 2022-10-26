@@ -121,9 +121,17 @@
   align-items: center;
   justify-content: center;
   border-radius: 25px 25px 25px 25px;
-  border-color: #555;
-  border-width: 10px;
+  border: 1px solid #293961;
+  overflow: hidden;
+  position: relative;
 }
+
+.btnfile {
+  padding: 10px;
+  position: absolute;
+  left: 70%;
+}
+
 img {
   max-width: 18%
 }
@@ -133,7 +141,8 @@ img {
 }
 .text {
   font-size: 7px;
-  padding-left: 20px;
+  position: absolute;
+  padding-left: 10px;
 }
 
 ::-webkit-scrollbar-track

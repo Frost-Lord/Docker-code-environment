@@ -1,11 +1,18 @@
+/* eslint-disable jsx-a11y/alt-text */
 import "./container.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { dockerlogs, allfiles } from "../../routes/routes";
-import {openCard,saveCard,loadlog,loadfiledata, delCard, getimg} from "./container-script";
+import {
+  openCard,
+  saveCard,
+  loadlog,
+  loadfiledata,
+  delCard,
+  getimg,
+} from "./container-script";
 import { ToastContainer } from "react-toastify";
-
 
 function App() {
   const navigate = useNavigate();
@@ -17,11 +24,11 @@ function App() {
     if (!localStorage.getItem("LOCALHOST_KEY")) {
       navigate("/login");
     }
-    loadlog()
-    loadfiledata()
+    loadlog();
+    loadfiledata();
 
     setuser(JSON.parse(localStorage.getItem("LOCALHOST_KEY")));
-}, []);
+  }, []);
 
   useEffect(() => {
     let containerid = window.location.href.split("/")[4];
@@ -33,7 +40,7 @@ function App() {
         })
         .then((res) => {
           setlogs(res.data);
-          let codeEditor = document.getElementById('codelog');
+          let codeEditor = document.getElementById("codelog");
           codeEditor.value = res.data;
         })
         .catch((err) => {
@@ -63,54 +70,69 @@ function App() {
 
   return (
     <>
-    <div className="App">
-      <header className="App-header">
-        <div className="console">
-          <h2 className="files-title">Logs</h2>
-          <div className="console-inner">
-          <p>
-              <div className="counter" id="lineCounter2" wrap="off">
-                1.
-              </div>
-              <div className="codelog" id="codelog" wrap="off">{logs}</div>
-            </p>
-
+      <div className="App">
+        <header className="App-header">
+          <div className="console">
+            <h2 className="files-title">Logs</h2>
+            <div className="console-inner">
+              <p>
+                <div className="counter" id="lineCounter2" wrap="off">
+                  1.
+                </div>
+                <div className="codelog" id="codelog" wrap="off">
+                  {logs}
+                </div>
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="file">
-          <h2 className="files-title">File name <button className="savefile" onClick={saveCard}>
-            Save
-          </button></h2>
-          <div className="file-inner">
-            <p>
-              <textarea className="counter" id="lineCounter" wrap="off">
-                1.
-              </textarea>
-              <textarea className="codeEditor" id="codeEditor" wrap="off"></textarea>
-            </p>
+          <div className="file">
+            <h2 className="files-title">
+              File name{" "}
+              <button className="savefile" onClick={saveCard}>
+                Save
+              </button>
+            </h2>
+            <div className="file-inner">
+              <p>
+                <textarea className="counter" id="lineCounter" wrap="off">
+                  1.
+                </textarea>
+                <textarea
+                  className="codeEditor"
+                  id="codeEditor"
+                  wrap="off"
+                ></textarea>
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="files">
-          <h2 className="files-title">Files</h2>
-          <div className="files-inner">
-            <div className="files-content"></div>
-            {files.map((file) => (
-    <div class="container">
-    <div class="image">
-      <img src={getimg(file)} />
-     </div>
-    <div class="text">
-      <h1>{file}</h1>
-    </div>
-  </div>
-            ))}
+          <div className="files">
+            <h2 className="files-title">Files</h2>
+            <div className="files-inner">
+              <div className="files-content"></div>
+              {files.map((file) => (
+                <div class="container">
+                  <div class="image">
+                    <img src={getimg(file)} />
+                  </div>
+                  <div class="text">
+                    <h1>{file}</h1>
+                  </div>
+                  <button class="btnfile" id={file} onClick={openCard}>
+                    Open
+                  </button>
+                  <br></br>
+                  <button class="btnfile" id={file} onClick={delCard}>
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </header>
-    </div>
-    <ToastContainer />
+        </header>
+      </div>
+      <ToastContainer />
     </>
   );
 }
