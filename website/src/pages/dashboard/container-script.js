@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { getfile, savefile } from "../../routes/routes";
+import { getfile, savefile, delfile } from "../../routes/routes";
+let fileopen;
 
 const toastOptions = {
   position: "top-right",
@@ -9,13 +10,20 @@ const toastOptions = {
   theme: "dark",
 };
 
-const saveCard = (event) => {
+
+function getimg(file) {
+ if (file.includes(".js")) {
+  return "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png";
+ }
+}
+
+const saveCard = async(event) => {
   let containerid = window.location.href.split("/")[4];
 
-  axios.post(savefile, {
+  await axios.post(savefile, {
     container: containerid,
     key: "elysiumnodesglichi",
-    name: event.currentTarget.id,
+    name: fileopen,
     data: document.getElementById("codeEditor").value,
   }).then((res) => {
     toast.success("Saved", toastOptions);  
@@ -24,10 +32,27 @@ const saveCard = (event) => {
   });
 };
 
-const openCard = (event) => {
+const delCard = async(event) => {
   let containerid = window.location.href.split("/")[4];
 
-  axios.post(getfile, {
+  await axios.post(delfile, {
+    container: containerid,
+    key: "elysiumnodesglichi",
+    name: fileopen,
+  }).then((res) => {
+    toast.warn("Deleted", toastOptions);  
+  }).catch((err) => {
+    console.log(err);
+  });
+};
+
+const openCard = async(event) => {
+  let containerid = window.location.href.split("/")[4];
+
+  fileopen = event.currentTarget.id;
+
+
+  await axios.post(getfile, {
     container: containerid,
     key: "elysiumnodesglichi",
     name: event.currentTarget.id,
@@ -107,4 +132,4 @@ codeEditor?.addEventListener('input', () => {
 });
 }
 
-export { openCard, saveCard, loadfiledata, loadlog };
+export { openCard, saveCard, loadfiledata, loadlog, delCard, getimg };

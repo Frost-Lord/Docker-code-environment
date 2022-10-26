@@ -13,3 +13,5 @@ export const CDir = `${host}/files/cdir`;
 export const CFile = `${host}/files/cfile`;
 export const getfile = `${host}/files/getfile`;
 export const savefile = `${host}/files/savefile`;
+export const delfile = `${host}/files/delfile`;
+export const deldir = `${host}/files/deldir`;

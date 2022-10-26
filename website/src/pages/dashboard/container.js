@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { dockerlogs, allfiles } from "../../routes/routes";
-import {openCard,saveCard,loadlog,loadfiledata} from "./container-script";
+import {openCard,saveCard,loadlog,loadfiledata, delCard, getimg} from "./container-script";
 import { ToastContainer } from "react-toastify";
 
 
@@ -79,7 +79,7 @@ function App() {
         </div>
 
         <div className="file">
-          <h2 className="files-title">File name <button className="save" onClick={saveCard}>
+          <h2 className="files-title">File name <button className="savefile" onClick={saveCard}>
             Save
           </button></h2>
           <div className="file-inner">
@@ -97,16 +97,7 @@ function App() {
           <div className="files-inner">
             <div className="files-content"></div>
             {files.map((file) => (
-              <div className="file-item">
-                <div className="file-name">{file}<div className="file-actions">
-                  <button className="file-action" id={file} onClick={openCard}>
-                    Open
-                  </button>
-                  <button className="file-action" id={file}>
-                    Delete
-                  </button>
-                </div></div>
-              </div>
+
             ))}
           </div>
         </div>
