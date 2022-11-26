@@ -1,3 +1,3 @@
-# Docker-Sharded-code
+# Docker-code-environment 
 
-Custom enviroment to run code in docker containers
+Docker-code-environment is a platform for creating and sharing software. You can write your code and host it all in the same place. 
